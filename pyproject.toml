@@ -1,0 +1,22 @@
+[project]
+name = "tg-food-bot"
+version = "0.1.0"
+description = "Telegram bot for food wholesale company"
+authors = [
+    {name = "Mikhail Mashenistov",email = "pr.mashinistov@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "python-telegram-bot (>=22.8,<23.0)",
+    "sqlalchemy (>=2.0.51,<3.0.0)",
+    "alembic (>=1.18.5,<2.0.0)",
+    "pydantic-settings (>=2.14.2,<3.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -31,3 +31,20 @@ class UserRepository:
         self.session.commit()
         self.session.refresh(user)
         return user
+
+    def update(
+        self,
+        user: User,
+        username: str | None,
+        first_name: str | None,
+        last_name: str | None,
+        language_code: str | None,
+    ) -> User:
+        user.username = username
+        user.first_name = first_name
+        user.last_name = last_name
+        user.language_code = language_code
+
+        self.session.commit()
+        self.session.refresh(user)
+        return user

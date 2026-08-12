@@ -63,9 +63,6 @@ class ApplicationService:
 
         return self.field_order[next_index]
 
-    def cancel_form(self) -> dict:
-        return {}
-
     def prepare_application_data(self, form_data: dict) -> dict:
         return {
             "name": form_data["name"],
@@ -112,28 +109,6 @@ class ApplicationService:
             "Заявка принята. "
             "Менеджер свяжется с вами в ближайшее время."
         )
-
-    def get_today_applications(self) -> list[Application]:
-        return self.repository.get_today()
-
-    def format_applications(self, applications: list[Application]) -> str:
-        if not applications:
-            return "Заявок за сегодня пока нет."
-
-        application_lines = []
-        for application in applications:
-            application_lines.append(
-                "Заявка\n"
-                f"Имя: {application.name}\n"
-                f"Телефон: {application.phone}\n"
-                f"Город: {application.city or 'не указан'}\n"
-                f"Компания: {application.company or 'не указана'}\n"
-                f"Email: {application.email or 'не указан'}\n"
-                f"Комментарий: {application.comment or 'не указан'}\n"
-                f"Статус уведомления: {application.notification_status}"
-            )
-
-        return "\n\n".join(application_lines)
 
     def _validate_phone(self, phone: str) -> None:
         digits = re.sub(r"\D", "", phone)

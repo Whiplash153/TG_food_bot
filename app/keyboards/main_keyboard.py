@@ -5,7 +5,7 @@ MAIN_MENU_KEYBOARD = ReplyKeyboardMarkup(
     keyboard=[
         [
             KeyboardButton("🔥 Акции"),
-            KeyboardButton("🏢 О нас"),
+            KeyboardButton("🏢 О компании"),
         ],
         [
             KeyboardButton("❓ Частые вопросы"),
@@ -14,15 +14,7 @@ MAIN_MENU_KEYBOARD = ReplyKeyboardMarkup(
         [
             KeyboardButton("📝 Оставить заявку"),
         ],
-    ],
-    resize_keyboard=True,
-)
-
-
-BACK_TO_MENU_KEYBOARD = ReplyKeyboardMarkup(
-    keyboard=[
         [
-            KeyboardButton("⬅ Назад"),
             KeyboardButton("🏠 Главное меню"),
         ],
     ],

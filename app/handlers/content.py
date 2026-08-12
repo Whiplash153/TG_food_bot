@@ -81,7 +81,7 @@ def get_content_handlers() -> list[MessageHandler]:
     return [
         MessageHandler(filters.Regex("^🏠 Главное меню$"), show_main_menu),
         MessageHandler(filters.Regex("^🔥 Акции$"), show_promotions),
-        MessageHandler(filters.Regex("^🏢 О нас$"), show_about),
+        MessageHandler(filters.Regex("^🏢 О компании$"), show_about),
         MessageHandler(filters.Regex("^❓ Частые вопросы$"), show_faq),
         MessageHandler(filters.Regex("^📞 Контакты$"), show_contacts),
     ]

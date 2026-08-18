@@ -94,6 +94,24 @@ docker-compose.yml   # local PostgreSQL
 → user receives confirmation
 ```
 
+## Screenshots
+
+| Bot start screen | Main menu |
+| --- | --- |
+| ![Bot start screen](docs/screenshots/01-bot-start.png) | ![Main menu](docs/screenshots/02-main-menu.png) |
+
+| Promotions | FAQ |
+| --- | --- |
+| ![Promotions](docs/screenshots/03-promotions-empty.png) | ![FAQ](docs/screenshots/04-faq.png) |
+
+| Company info | Contacts |
+| --- | --- |
+| ![Company info](docs/screenshots/05-company-info.png) | ![Contacts](docs/screenshots/06-contacts.png) |
+
+| Request form | Submitted request |
+| --- | --- |
+| ![Request form](docs/screenshots/07-request-form.png) | ![Submitted request](docs/screenshots/08-request-submitted.png) |
+
 ## Environment Variables
 
 Create `.env` from `.env.example`:
@@ -183,6 +201,42 @@ with SessionLocal() as session:
             f"status={application.notification_status}"
         )
 PY
+```
+
+## Deployment
+
+The bot is deployed on a VPS as a long-running `systemd` service.
+
+Production setup:
+
+```text
+/opt/apps/tg-food-bot
+├── application code
+├── .env                    # production secrets, not committed
+├── docker-compose.prod.yml # production PostgreSQL
+└── systemd service         # tg-food-bot.service
+```
+
+The production PostgreSQL instance runs in a separate Docker container and is exposed only on the server:
+
+```text
+127.0.0.1:5435 -> 5432
+```
+
+The bot itself runs through polling, so it does not require a domain, nginx, HTTPS, or Telegram webhooks.
+
+Useful VPS commands:
+
+```bash
+systemctl status tg-food-bot --no-pager
+journalctl -u tg-food-bot -n 100 --no-pager
+docker ps --filter name=tg_food_bot_postgres
+```
+
+The service is enabled for autostart after server reboot:
+
+```bash
+systemctl is-enabled tg-food-bot
 ```
 
 ## MVP Scope
